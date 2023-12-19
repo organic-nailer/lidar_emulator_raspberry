@@ -3,7 +3,7 @@ use std::{fs::File, io::Seek, net::UdpSocket};
 use pcap_parser::{LegacyPcapReader, traits::PcapReaderIterator, PcapBlockOwned};
 
 
-const SOURCE_ADDR: &str = "127.0.0.1:8081";
+const SOURCE_ADDR: &str = "192.168.1.201:2368";
 
 pub fn run(args: Args) {
     let mut file = File::open(args.input).unwrap();
@@ -11,7 +11,7 @@ pub fn run(args: Args) {
     let dest_addr = if let Some(port) = args.port {
         format!("255.255.255.255:{}", port)
     } else {
-        format!("255.255.255.255:8080")
+        format!("255.255.255.255:2368")
     };
     println!("UDP broadcast {} -> {}", SOURCE_ADDR, dest_addr);
 
